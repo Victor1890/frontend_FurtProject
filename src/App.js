@@ -1,12 +1,14 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //Pages
-import Login from "./pages/Login/index";
+import Login from "./pages/Login";
 import MainScreen from "./pages/MainScreen";
-import Order from "./pages/Orders";
+import ListOrder from "./pages/ListOrders";
 import Register from "./pages/Register";
 import AddOrders from "./pages/AddOrders";
+import EditOrder from "./pages/EditOrders";
 
+//State
 import { ProductState } from "./context/Products/productState";
 
 const App = () => {
@@ -14,8 +16,9 @@ const App = () => {
     <ProductState>
       <Router>
         <Switch>
+          <Route component={EditOrder} path='/editOrders/:id' />
           <Route component={AddOrders} path='/addOrders' />
-          <Route component={Order} path='/orders' />
+          <Route component={ListOrder} path='/listOrders' />
           <Route component={MainScreen} path='/' />
           <Route component={Login} path='/login' />
           <Route component={Register} path='/register' />

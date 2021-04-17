@@ -10,6 +10,12 @@ export default (state, action) => {
   const { payload, type } = action;
 
   switch (type) {
+    case POST_PRODUCT:
+      return {
+        ...state,
+        products: payload,
+      };
+
     case GET_PRODUCT:
       return {
         ...state,
@@ -25,19 +31,13 @@ export default (state, action) => {
     case DELETE_PPRODUCT_BY_ID:
       return {
         ...state,
-        products: payload,
+        selectedProductById: payload,
       };
 
     case EDIT_PRODUCT_BY_ID:
       return {
         ...state,
-        products: payload,
-      };
-
-    case POST_PRODUCT:
-      return {
-        ...state,
-        products: payload,
+        selectedProductById: payload,
       };
 
     default:

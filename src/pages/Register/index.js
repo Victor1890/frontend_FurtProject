@@ -6,7 +6,6 @@ const Register = () => {
         <div className='col bg-white p-5 rounded-end'>
           <h2 className='fw-bold text-center py-5'>Registro</h2>
 
-          {/* <!-- Login --> */}
           <form action='#'>
             <div className='mb-4'>
               <label for='email' className='form-label'>
@@ -47,10 +46,9 @@ const Register = () => {
             </div>
           </form>
 
-          {/* <!-- Login with social netword --> */}
           <div className='container w-100 my-5'>
             <div className='row text-center'>
-              <div className='col-12'>Iniciar Sesión</div>
+              <div className='col-12'>Volver al Login</div>
             </div>
             <div className='row'>
               <div className='col'>

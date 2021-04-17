@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AiFillFileAdd } from "react-icons/ai";
 import "./styles.css";
 
@@ -6,25 +6,13 @@ import ProductContext from "../../context/Products/productContext";
 
 //component
 import TableBody from "../../components/TableBody/index";
-import ModalPortal from "../../components/ModalEdit/index";
 
-const Order = () => {
-  const [isAddOrder, setIsAddOrder] = useState(false);
-
+const ListOrder = () => {
   const { products, getProduct } = useContext(ProductContext);
 
   useEffect(() => {
     getProduct();
   }, [products]);
-
-  const isAddOrderHandle = () => {
-    setIsAddOrder(true);
-    console.log("update");
-  };
-
-  const isNotAddOrderHandle = () => {
-    setIsAddOrder(false);
-  };
 
   return (
     <div className='container-xl'>
@@ -42,7 +30,7 @@ const Order = () => {
                   href='#addEmployeeModal'
                   className='btn btn-success'
                   data-toggle='modal'
-                  onClick={() => null}
+                  onClick={() => (document.location.href = "/addOrders")}
                 >
                   <AiFillFileAdd size={25} />
                   <span>Add New Employee</span>
@@ -63,7 +51,6 @@ const Order = () => {
               {products.map((product) => (
                 <TableBody key={product._id} {...product} />
               ))}
-              {isAddOrder && <ModalPortal isDisable={isNotAddOrderHandle} />}
             </tbody>
           </table>
         </div>
@@ -72,4 +59,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default ListOrder;
