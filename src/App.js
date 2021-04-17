@@ -17,11 +17,11 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path='/' component={Login} />
-          <Route component={Register} path='/register' />
-          <Route component={DeleteOrder} path='/deleteOrders/:id' />
-          <Route component={EditOrder} path='/editOrders/:id' />
-          <Route component={AddOrders} path='/addOrders' />
-          <Route component={ListOrder} path='/listOrders' />
+          <Route component={Register} exact path='/register' />
+          <Route component={DeleteOrder} exact path='/deleteOrders/:id' />
+          <Route component={EditOrder} exact path='/editOrders/:id' />
+          <Route component={AddOrders} exact path='/addOrders' />
+          <Route component={ListOrder} exact path='/listOrders' />
         </Switch>
       </Router>
     </ProductState>
