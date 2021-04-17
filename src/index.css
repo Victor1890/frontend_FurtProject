@@ -13,3 +13,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.bg {
+  background-image: url("https://i.pinimg.com/originals/94/da/e0/94dae02852c4dc397758f82fd3b6a5b8.png");
+  background-position: center center;
+}

@@ -15,8 +15,10 @@ export const ProductState = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
   const postProduct = async (data) => {
-    console.log(data);
-    const res = await axios.post("http://localhost:4000/api/products/", data);
+    const res = await axios.post(
+      "https://api-rest-sample-backend.herokuapp.com/api/products",
+      data,
+    );
     dispatch({
       type: "POST_PRODUCT",
       payload: res.data,
@@ -24,7 +26,9 @@ export const ProductState = ({ children }) => {
   };
 
   const getProduct = async () => {
-    const res = await axios.get("http://localhost:4000/api/products/");
+    const res = await axios.get(
+      "https://api-rest-sample-backend.herokuapp.com/api/products",
+    );
     dispatch({
       type: "GET_PRODUCT",
       payload: res.data,
@@ -32,7 +36,9 @@ export const ProductState = ({ children }) => {
   };
 
   const getProductById = async (id) => {
-    const res = await axios.get(`http://localhost:4000/api/products/${id}`);
+    const res = await axios.get(
+      `https://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
+    );
     dispatch({
       type: "GET_PRODUCT_BY_ID",
       payload: res.data,
@@ -40,8 +46,9 @@ export const ProductState = ({ children }) => {
   };
 
   const deleteProductById = async (id) => {
-    // console.log(id);
-    const res = await axios.delete(`http://localhost:4000/api/products/${id}`);
+    const res = await axios.delete(
+      `http://localhost:4000/api/productshttps://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
+    );
     dispatch({
       ...state,
       payload: res.data,
@@ -51,7 +58,7 @@ export const ProductState = ({ children }) => {
   const putProductById = async (id, data) => {
     console.log(id, data);
     const res = await axios.put(
-      `http://localhost:4000/api/products/${id}`,
+      `https://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
       data,
     );
     dispatch({

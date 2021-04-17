@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Register = () => {
   return (
     <div className='container w-75 bg-primary mt-5 rounded shadow'>
       <div className='row align-items-stretch'>
-        <div className='col d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded'></div>
+        <div className='col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded'></div>
         <div className='col bg-white p-5 rounded-end'>
           <h2 className='fw-bold text-center py-5'>Registro</h2>
 
@@ -19,29 +21,28 @@ const Register = () => {
               </label>
               <input type='password' className='form-control' name='password' />
             </div>
-            <div className='mb-4 form-check'>
-              <input
-                type='checkbox'
-                name='connected'
-                className='form-check-input'
-              />
-              <label for='connected' className='form-check-label'>
-                Mantenerme conectado
+            <div className='mb-4'>
+              <label for='password' className='form-label'>
+                Repetir Contraseña
               </label>
+              <input type='password' className='form-control' name='password' />
             </div>
 
             <div className='d-grid'>
-              <button type='submit' className='btn btn-primary'>
-                Iniciar Sesión
+              <button
+                type='submit'
+                className='btn btn-primary'
+                onClick={() => (window.location.href = "/login")}
+              >
+                Registrarse
               </button>
             </div>
             <div className='my-3'>
               <span>
-                No tienes cuenta? <a href='#'>Registrate</a>
-              </span>
-              <br />
-              <span>
-                <a href='#'>Recuperar Password</a>
+                Ya tienes cuenta?{" "}
+                <Link to='/login'>
+                  <a href='#'>Inicia Sección</a>
+                </Link>
               </span>
             </div>
           </form>
@@ -52,7 +53,14 @@ const Register = () => {
             </div>
             <div className='row'>
               <div className='col'>
-                <button className='btn btn-outline-primary w-100 my-1'>
+                <button
+                  className='btn btn-outline-primary w-100 my-1'
+                  onClick={() =>
+                    window.alert(
+                      "esta función no está habilitada por el momento",
+                    )
+                  }
+                >
                   <div className='row align-items-center'>
                     <div className='col-2 d-none d-md-block'>
                       <img
@@ -66,7 +74,14 @@ const Register = () => {
                 </button>
               </div>
               <div className='col'>
-                <button className='btn btn-outline-danger w-100 my-1'>
+                <button
+                  className='btn btn-outline-danger w-100 my-1'
+                  onClick={() =>
+                    window.alert(
+                      "esta función no está habilitada por el momento",
+                    )
+                  }
+                >
                   <div className='row align-items-center'>
                     <div className='col-2 d-none d-md-block'>
                       <img
