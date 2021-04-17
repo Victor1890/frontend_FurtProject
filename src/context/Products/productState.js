@@ -47,7 +47,7 @@ export const ProductState = ({ children }) => {
 
   const deleteProductById = async (id) => {
     const res = await axios.delete(
-      `http://localhost:4000/api/productshttps://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
+      `https://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
     );
     dispatch({
       ...state,
