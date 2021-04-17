@@ -3,6 +3,8 @@ import axios from "axios";
 import ProductContext from "./productContext";
 import ProductReducer from "./productReducer";
 
+import { ENDPOINT } from "../types";
+
 export const ProductState = ({ children }) => {
   //
 
@@ -15,10 +17,7 @@ export const ProductState = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
   const postProduct = async (data) => {
-    const res = await axios.post(
-      "https://api-rest-sample-backend.herokuapp.com/api/products",
-      data,
-    );
+    const res = await axios.post(ENDPOINT, data);
     dispatch({
       type: "POST_PRODUCT",
       payload: res.data,
@@ -26,9 +25,7 @@ export const ProductState = ({ children }) => {
   };
 
   const getProduct = async () => {
-    const res = await axios.get(
-      "https://api-rest-sample-backend.herokuapp.com/api/products",
-    );
+    const res = await axios.get(ENDPOINT);
     dispatch({
       type: "GET_PRODUCT",
       payload: res.data,
@@ -36,9 +33,7 @@ export const ProductState = ({ children }) => {
   };
 
   const getProductById = async (id) => {
-    const res = await axios.get(
-      `https://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
-    );
+    const res = await axios.get(`${ENDPOINT}/${id}`);
     dispatch({
       type: "GET_PRODUCT_BY_ID",
       payload: res.data,
@@ -46,9 +41,7 @@ export const ProductState = ({ children }) => {
   };
 
   const deleteProductById = async (id) => {
-    const res = await axios.delete(
-      `https://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
-    );
+    const res = await axios.delete(`${ENDPOINT}/${id}`);
     dispatch({
       ...state,
       payload: res.data,
@@ -57,10 +50,7 @@ export const ProductState = ({ children }) => {
 
   const putProductById = async (id, data) => {
     console.log(id, data);
-    const res = await axios.put(
-      `https://api-rest-sample-backend.herokuapp.com/api/products/${id}`,
-      data,
-    );
+    const res = await axios.put(`${ENDPOINT}/${id}`, data);
     dispatch({
       ...state,
       payload: res.data,
