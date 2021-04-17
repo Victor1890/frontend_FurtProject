@@ -16,7 +16,7 @@ const App = () => {
     <ProductState>
       <Router>
         <Switch>
-          <Route component={Login} path='/' />
+          <Route exact path='/' component={Login} />
           <Route component={Register} path='/register' />
           <Route component={DeleteOrder} path='/deleteOrders/:id' />
           <Route component={EditOrder} path='/editOrders/:id' />
