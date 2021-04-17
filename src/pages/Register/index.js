@@ -32,7 +32,7 @@ const Register = () => {
               <button
                 type='submit'
                 className='btn btn-primary'
-                onClick={() => (window.location.href = "/login")}
+                onClick={() => (window.location.href = "/")}
               >
                 Registrarse
               </button>
@@ -40,7 +40,7 @@ const Register = () => {
             <div className='my-3'>
               <span>
                 Ya tienes cuenta?{" "}
-                <Link to='/login'>
+                <Link to='/'>
                   <a href='#'>Inicia Sección</a>
                 </Link>
               </span>

@@ -16,12 +16,12 @@ const App = () => {
     <ProductState>
       <Router>
         <Switch>
+          <Route component={Login} path='/' />
+          <Route component={Register} path='/register' />
           <Route component={DeleteOrder} path='/deleteOrders/:id' />
           <Route component={EditOrder} path='/editOrders/:id' />
           <Route component={AddOrders} path='/addOrders' />
           <Route component={ListOrder} path='/listOrders' />
-          <Route component={Login} path='/login' />
-          <Route component={Register} path='/register' />
         </Switch>
       </Router>
     </ProductState>
