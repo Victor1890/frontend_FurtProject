@@ -40,15 +40,20 @@ export const ProductState = ({ children }) => {
   };
 
   const deleteProductById = async (id) => {
-    const res = await axios.get(`http://localhost:4000/api/products/${id}`);
+    // console.log(id);
+    const res = await axios.delete(`http://localhost:4000/api/products/${id}`);
     dispatch({
       ...state,
       payload: res.data,
     });
   };
 
-  const putProductById = async (id) => {
-    const res = await axios.get(`http://localhost:4000/api/products/${id}`);
+  const putProductById = async (id, data) => {
+    console.log(id, data);
+    const res = await axios.put(
+      `http://localhost:4000/api/products/${id}`,
+      data,
+    );
     dispatch({
       ...state,
       payload: res.data,

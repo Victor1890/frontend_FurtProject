@@ -1,25 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import ProductContext from "../../context/Products/productContext";
 
-const AddOrders = ({ history }) => {
-  const [data, setData] = useState({
-    name: "",
-    category: "",
-    stock: 0,
-    price: 0,
-    description: "",
-  });
+const DeleteOrder = ({ history, match }) => {
+  const { id } = match.params;
+  const { selectedProductById, getProductById, deleteProductById } = useContext(
+    ProductContext,
+  );
 
-  const { postProduct } = useContext(ProductContext);
+  useEffect(() => getProductById(id), []);
 
-  const onSetData = (name, value) => {
-    setData({ ...data, [name]: value });
-  };
-
-  const handlPostProduct = (event) => {
+  const handlDeleteProduct = (event) => {
     event.preventDefault();
-
-    postProduct(data);
+    deleteProductById(id);
 
     history.push("/listOrders");
   };
@@ -36,9 +28,9 @@ const AddOrders = ({ history }) => {
               alt=''
             />
           </div>
-          <h2 className='fw-bold text-center py-5'>Agregar Pedidos</h2>
+          <h2 className='fw-bold text-center py-5'>Eliminar Pedidos</h2>
 
-          <form onSubmit={handlPostProduct}>
+          <form onSubmit={handlDeleteProduct}>
             <div className='mb-4'>
               <label htmlFor='name' className='form-label'>
                 Nombre del Pedido
@@ -48,8 +40,7 @@ const AddOrders = ({ history }) => {
                 className='form-control'
                 name='name'
                 placeholder='Ej: Pizza de Papa Johns'
-                onChange={(event) => onSetData("name", event.target.value)}
-                required
+                value={selectedProductById?.name}
               />
             </div>
             <div className='mb-4'>
@@ -61,10 +52,7 @@ const AddOrders = ({ history }) => {
                 className='form-control'
                 name='description'
                 placeholder='Ej: Pizza de Papa Johns'
-                required
-                onChange={(event) =>
-                  onSetData("description", event.target.value)
-                }
+                value={selectedProductById?.description}
               />
             </div>
             <div className='mb-4'>
@@ -76,8 +64,7 @@ const AddOrders = ({ history }) => {
                 className='form-control'
                 name='category'
                 placeholder='Ej: Pizza'
-                required
-                onChange={(event) => onSetData("category", event.target.value)}
+                value={selectedProductById?.category}
               />
             </div>
 
@@ -90,8 +77,7 @@ const AddOrders = ({ history }) => {
                 className='form-control'
                 name='stock'
                 placeholder='Ej: 3'
-                required
-                onChange={(event) => onSetData("stock", event.target.value)}
+                value={selectedProductById?.stock}
               />
             </div>
 
@@ -104,17 +90,16 @@ const AddOrders = ({ history }) => {
                 className='form-control'
                 name='price'
                 placeholder='Ej: $300'
-                required
-                onChange={(event) => onSetData("price", event.target.value)}
+                value={selectedProductById?.price}
               />
             </div>
 
             <div className='d-flex justify-content-center align-items-center'>
               <button
-                className='btn btn-success btn-lg btn-block mb-3'
-                onSubmit={handlPostProduct}
+                className='btn btn-danger btn-lg btn-block mb-3'
+                onSubmit={handlDeleteProduct}
               >
-                Agregar Pedido
+                Eliminar Pedido
               </button>
             </div>
             <div className='d-flex justify-content-center align-items-center'>
@@ -132,4 +117,4 @@ const AddOrders = ({ history }) => {
   );
 };
 
-export default AddOrders;
+export default DeleteOrder;

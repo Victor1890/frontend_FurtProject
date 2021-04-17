@@ -1,17 +1,22 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiFillFileAdd } from "react-icons/ai";
 import "./styles.css";
 
-import ProductContext from "../../context/Products/productContext";
-
 //component
 import TableBody from "../../components/TableBody/index";
+import LoadSpinner from "../../components/TableBody";
+
+//context
+import ProductContext from "../../context/Products/productContext";
+import LoadSpinnet from "../../components/LoadSpinner";
 
 const ListOrder = () => {
   const { products, getProduct } = useContext(ProductContext);
 
   useEffect(() => {
-    getProduct();
+    setTimeout(() => {
+      getProduct();
+    }, 1000);
   }, [products]);
 
   return (
@@ -22,7 +27,7 @@ const ListOrder = () => {
             <div className='row'>
               <div className='col-sm-6'>
                 <h2>
-                  Manage <b>Furt Project+96</b>
+                  <b>Listas de Pedidos</b>
                 </h2>
               </div>
               <div className='col-sm-6'>
@@ -33,7 +38,7 @@ const ListOrder = () => {
                   onClick={() => (document.location.href = "/addOrders")}
                 >
                   <AiFillFileAdd size={25} />
-                  <span>Add New Employee</span>
+                  <span>Agregar Pedidos</span>
                 </a>
               </div>
             </div>
@@ -41,13 +46,17 @@ const ListOrder = () => {
           <table className='table table-hover'>
             <thead>
               <tr>
-                <th> Nombre </th>
+                <th>
+                  {""} Nombre {""}
+                </th>
                 <th>Descripción</th>
                 <th>Categoria</th>
+                <th>Stock</th>
                 <th>Precio</th>
               </tr>
             </thead>
             <tbody>
+              {!products && <LoadSpinnet />}
               {products.map((product) => (
                 <TableBody key={product._id} {...product} />
               ))}

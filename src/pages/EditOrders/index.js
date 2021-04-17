@@ -1,9 +1,33 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import ProductContext from "../../context/Products/productContext";
 
-const EditOrders = () => {
-  const { selectedProductById } = useContext(ProductContext);
+const EditOrders = ({ match, history }) => {
+  const [data, setData] = useState({
+    name: "",
+    category: "",
+    stock: 0,
+    price: 0,
+    description: "",
+  });
+
+  const { selectedProductById, getProductById, putProductById } = useContext(
+    ProductContext,
+  );
+
+  const { id } = match.params;
+
+  useEffect(() => getProductById(id), []);
+
+  const onSetData = (name, value) => {
+    setData({ ...data, [name]: value });
+  };
+
+  const handlSubmitProduct = (event) => {
+    event.preventDefault();
+    putProductById(id, data);
+    history.push("/listOrders");
+  };
 
   return (
     <div className='container w-50 bg-primary mt-5 rounded shadow'>
@@ -19,7 +43,7 @@ const EditOrders = () => {
           </div>
           <h2 className='fw-bold text-center py-5'>Editar Pedidos</h2>
 
-          <form action='#'>
+          <form onSubmit={handlSubmitProduct}>
             <div className='mb-4'>
               <label htmlFor='name' className='form-label'>
                 Nombre del Pedido
@@ -28,8 +52,26 @@ const EditOrders = () => {
                 type='text'
                 className='form-control'
                 name='name'
-                placeholder='Ej: Pizza de Papa Johns'
-                value={"hhh"}
+                required
+                placeholder={selectedProductById?.name}
+                onChange={(event) => onSetData("name", event.target.value)}
+                value={data.name}
+              />
+            </div>
+            <div className='mb-4'>
+              <label htmlFor='description' className='form-label'>
+                Descripción del Productp
+              </label>
+              <textarea
+                type='text'
+                className='form-control'
+                name='description'
+                required
+                placeholder={selectedProductById?.description}
+                onChange={(event) =>
+                  onSetData("description", event.target.value)
+                }
+                value={data.description}
               />
             </div>
             <div className='mb-4'>
@@ -40,7 +82,10 @@ const EditOrders = () => {
                 type='text'
                 className='form-control'
                 name='category'
-                placeholder='Ej: Pizza'
+                required
+                placeholder={selectedProductById?.category}
+                onChange={(event) => onSetData("category", event.target.value)}
+                value={data.category}
               />
             </div>
 
@@ -52,7 +97,9 @@ const EditOrders = () => {
                 type='number'
                 className='form-control'
                 name='stock'
-                placeholder='Ej: 3'
+                required
+                placeholder={selectedProductById?.stock}
+                onChange={(event) => onSetData("stock", event.target.value)}
               />
             </div>
 
@@ -64,12 +111,24 @@ const EditOrders = () => {
                 type='number'
                 className='form-control'
                 name='price'
-                placeholder='Ej: $300'
+                required
+                placeholder={selectedProductById?.price}
+                onChange={(event) => onSetData("price", event.target.value)}
               />
             </div>
 
             <div className='d-flex justify-content-center align-items-center'>
-              <button className='btn btn-success'>Ediar Pedido?</button>
+              <button className='btn btn-success btn-lg btn-block mb-3'>
+                Ediar Pedido?
+              </button>
+            </div>
+            <div className='d-flex justify-content-center align-items-center'>
+              <button
+                className='btn btn-primary btn-lg btn-block'
+                onClick={() => history.push("/listOrders")}
+              >
+                Volver
+              </button>
             </div>
           </form>
         </div>
