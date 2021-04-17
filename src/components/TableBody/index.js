@@ -26,6 +26,7 @@ const TableBody = ({ _id, name, category, price, description, stock }) => {
           </Link>
           <Link to={`/deleteOrders/${_id}`}>
             <a
+              href={`/deleteOrders/${_id}`}
               style={{ cursor: "pointer" }}
               className='delete'
               data-toggle='modal'
