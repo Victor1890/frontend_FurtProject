@@ -6,7 +6,7 @@ import {
   POST_PRODUCT,
 } from "../types";
 
-export default (state, action) => {
+const productReducer = (state, action) => {
   const { payload, type } = action;
 
   switch (type) {
@@ -44,3 +44,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default productReducer;
