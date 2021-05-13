@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiFillFileAdd } from "react-icons/ai";
 import "./styles.css";
 
@@ -11,12 +11,12 @@ import ProductContext from "../../context/Products/productContext";
 
 const ListOrder = () => {
   const { products, getProduct } = useContext(ProductContext);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      getProduct();
-    }, 1000);
-  }, [products]);
+    setLoading(false);
+    getProduct().then((e) => setLoading(true));
+  }, [loading]);
 
   try {
     return (
